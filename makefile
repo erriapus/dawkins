@@ -1,12 +1,12 @@
 all: test
 
-test: testpy
+test: testpy testgo
 
 testjs:
 	node index.js
 
 testgo:
-	make -C shortestrep all
+	make -C primes all
 
 testjava:
 	make -C filesize all
