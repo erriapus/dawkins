@@ -6,9 +6,9 @@ Practise codekata daily
 
 # todos
 
-- [ ] create new github account
-- [ ] checkin as "dawkins" project
+- [ ] primes 
 
 # instructions
 
-- develop in consoleZ
+- K46: develop in consoleZ
+- eeepc: `~/dev/kata-dawkins`
