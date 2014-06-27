@@ -2,32 +2,74 @@ package main
 
 import (
     "fmt"
+    "math"
+    "github.com/javouhey/iter"
 )
 
-// Given an upper limit `max`, it will return a slice of all
-// primes less than or equal to N
-func findPrimes(max uint32) []uint32 {
-    //Create a list of integers from 0 to the MAX
-    x := make([]uint32, max)
+// Given an upper limit N (i.e. `max` argument), 
+// return all primes less than or equal to N.
+func FindPrimes(max uint32) []uint32 {
+    x := make([]uint32, max + 1)
     for i, _ := range x {
         if i >= 2 {
             x[i] = uint32(i)
         }
-        fmt.Printf("%d - %d\n", i, x[i])
     }
 
+    for i, _ := range x {
+        // the first prime begin at 2
+        if i < 2 {
+            continue
+        }
+        index := i
+        for j := range iter.M(len(x) - index) {
+            // look for a non-zero prime candidate
+            if x[index + j] == 0 {
+                continue
+            }
 
-//-Start with 2, set all list indices which are multiples of 2 to 0
-//--Find the next non-zero integer in the list, this is the next prime
-//--Zero out the list indices which are multiples of the new prime
-//-Repeat until you have reached the sqrt(MAX) + 1
-//-Now your list is all primes and 0s, remember to also zero out number 1
+            // zero out all multiples
+            thisPrime := index + j
+            k := 2
+            for {
+                c := thisPrime * k
+                if c >= len(x) {
+                    break
+                }
+                x[c] = 0
+                k = k + 1
+            }
 
+            if thisPrime >= int(math.Sqrt(float64(max))) + 1 {
+                break
+            }
+        }
+    }
+    return filterNonZero(x)
+}
 
+func filterNonZero(s []uint32) []uint32 {
+    x := make([]uint32, 0)
+    for _, item := range s {
+        if item != 0 {
+            x = append(x, item)
+        }
+    }
     return x
 }
 
 func main() {
-    fmt.Printf("%#v\n", findPrimes(10))
-    fmt.Printf("%#v\n", findPrimes(4))
+    do(1)
+    do(2)
+    do(4)
+    do(10)
+    do(100)
+}
+
+func do(n uint32) {
+    primes := FindPrimes(n)
+    for _, val := range primes {
+        fmt.Printf("%d ", val)
+    }
+    fmt.Println()
 }
