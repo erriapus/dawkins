@@ -3,6 +3,9 @@ Creates versions in
 ( ) Java
 ( ) Scala
 ( ) node.js
+
+    http://docs.travis-ci.com/user/languages/javascript-with-nodejs/
+
 ( ) python
 
 
