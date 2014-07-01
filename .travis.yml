@@ -9,6 +9,7 @@ node_js:
   - "0.11"
 install:
   - go get github.com/stretchr/testify
+  - go get github.com/javouhey/iter
 before_script:
   - "pip install -r requirements.txt"
 script: make
