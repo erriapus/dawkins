@@ -10,5 +10,5 @@ Practise codekata daily
 
 # instructions
 
-- K46: develop in consoleZ
+- K46: `C:\dev\codekatas\dawkins` in consoleZ
 - eeepc: `~/dev/kata-dawkins`
